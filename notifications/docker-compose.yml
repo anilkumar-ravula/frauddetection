@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  notification-service:
+    image: de/notification-service:latest  # <-- Replace with your image name
+    container_name: notification-service
+    environment:
+      LOG_PATH: /logs
+      SMTP_HOST:  ${SMTP_HOST}
+      SMTP_PORT:  ${SMTP_PORT}
+      SMTP_USERNAME:  ${SMTP_USERNAME}
+      SMTP_PASSWORD:  ${SMTP_PASSWORD}
+    ports:
+      - "8090:8090"
+    networks:
+      - notif-network
+
+networks:
+  notif-network:
